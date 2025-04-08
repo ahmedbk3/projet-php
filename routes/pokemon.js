@@ -1,21 +1,27 @@
 const express = require('express');
 const router = express.Router();
-const AttackPokemon = require('../models/AttackPokemon');
 const Pokemon = require('../pokemon/Pokemon');
+const AttackPokemon = require('../models/AttackPokemon');
 
-// Example route to handle battle logic
 router.post('/battle', (req, res) => {
-    const p1 = new Pokemon('Pikachu', 10, 50, 0.2, 2); // Example pokemon
-    const p2 = new Pokemon('Charmander', 8, 40, 0.15, 2); // Example pokemon
+    const p1Atk = new AttackPokemon(10, 50, 0.2, 2);
+    const p2Atk = new AttackPokemon(8, 40, 0.15, 2);
 
-    // Simulating attack
-    const p1Attack = new AttackPokemon(5, p1.attack, p1.critChance, p1.critMultiplier);
-    const p2Attack = new AttackPokemon(5, p2.attack, p2.critChance, p2.critMultiplier);
+    const p1 = new Pokemon('Pikachu', 100, p1Atk);
+    const p2 = new Pokemon('Charmander', 100, p2Atk);
 
-    const p1Damage = p1Attack.calculateDamage();
-    const p2Damage = p2Attack.calculateDamage();
+    // Check if p1 is a Pokemon instance
+    console.log(p1 instanceof Pokemon); // Should log true
 
-    res.render('battle', { p1, p2, p1Damage, p2Damage }); // Display the battle results
+    p1.attack(p2);
+    p2.attack(p1);
+
+    res.render('battle', {
+        p1,
+        p2,
+        p1Damage: p1Atk.calculateDamage(),
+        p2Damage: p2Atk.calculateDamage()
+    });
 });
 
 module.exports = router;

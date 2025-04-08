@@ -1,5 +1,5 @@
 // FirePokemon.js
-const Pokemon = require('./Pokemon');
+const Pokemon = require('./Pokemon').default;
 
 class FirePokemon extends Pokemon {
     constructor(name, hp, attackObj) {

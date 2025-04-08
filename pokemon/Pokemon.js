@@ -1,5 +1,3 @@
-// Pokemon.js
-
 class Pokemon {
     constructor(name, hp, attackObj) {
         this.name = name;

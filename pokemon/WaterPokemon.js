@@ -1,5 +1,5 @@
 // WaterPokemon.js
-const Pokemon = require('./Pokemon');
+const Pokemon = require('./Pokemon').default;
 
 class WaterPokemon extends Pokemon {
     constructor(name, hp, attackObj) {

@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Pokémon Battle</title>
+</head>
+<body>
+    <h1><%= p1.name %> vs <%= p2.name %>!</h1>
+
+    <p><strong><%= p1.name %></strong> did <%= p1Damage %> damage!</p>
+    <p><strong><%= p2.name %></strong> did <%= p2Damage %> damage!</p>
+
+    <% if (p1Damage > p2Damage) { %>
+        <h2><%= p1.name %> wins!</h2>
+    <% } else if (p1Damage < p2Damage) { %>
+        <h2><%= p2.name %> wins!</h2>
+    <% } else { %>
+        <h2>It's a draw!</h2>
+    <% } %>
+
+    <a href="/">Back to Home</a>
+</body>
+</html>
