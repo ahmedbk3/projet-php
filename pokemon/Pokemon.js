@@ -1,18 +1,29 @@
+// Pokemon.js
+
 class Pokemon {
-    constructor(name, hp, attack) {
+    constructor(name, hp, attackObj) {
         this.name = name;
         this.hp = hp;
-        this.attack = attack;
-    }
-
-    isDead() {
-        return this.hp <= 0;
+        this.attackObj = attackObj;  // AttackPokemon instance
     }
 
     attack(opponent) {
-        let dmg = Math.floor(Math.random() * (this.attack.max - this.attack.min + 1)) + this.attack.min;
-        if (Math.random() * 100 <= this.attack.prob) dmg *= this.attack.special;
-        opponent.hp -= dmg;
+        const damage = this.attackObj.calculateDamage();
+        console.log(`${this.name} attacks ${opponent.name} for ${damage} damage!`);
+        opponent.takeDamage(damage);
+    }
+
+    takeDamage(damage) {
+        this.hp -= damage;
+        if (this.hp <= 0) {
+            this.hp = 0;
+            console.log(`${this.name} has fainted!`);
+        }
+    }
+
+    isDead() {
+        return this.hp === 0;
     }
 }
+
 module.exports = Pokemon;

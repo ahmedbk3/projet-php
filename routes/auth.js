@@ -7,12 +7,15 @@ router.get('/', (req, res) => {
 });
 
 router.get('/login', (req, res) => res.render('login'));
+
 router.post('/login', (req, res) => {
     const { username, password } = req.body;
     if (username === 'admin' && password === 'pass') {
         req.session.user = username;
         res.redirect('/');
-    } else res.send('Wrong credentials');
+    } else {
+        res.send('Wrong credentials');
+    }
 });
 
-module.exports = router;
+module.exports = router; // ✅ Don't forget this!
