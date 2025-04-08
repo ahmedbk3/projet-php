@@ -9,18 +9,21 @@ app.use(express.static('public'));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(session({ secret: 'secret', resave: false, saveUninitialized: true }));
 
+// Middleware for session view count
 app.use((req, res, next) => {
     if (!req.session.views) req.session.views = 1;
     else req.session.views++;
     next();
 });
 
+// Import route modules
 const authRoutes = require('./routes/auth');
 const studentRoutes = require('./routes/student');
 const pokemonRoutes = require('./routes/pokemon');
 
-app.use('/', authRoutes);
-app.use('/students', studentRoutes);
-app.use('/pokemon', pokemonRoutes);
+// Mount routes to app
+app.use('/', authRoutes);           // Auth routes on root
+app.use('/students', studentRoutes); // Student routes on /students
+app.use('/pokemon', pokemonRoutes);  // Pokemon routes on /pokemon
 
 app.listen(3000, () => console.log('Server on http://localhost:3000'));
