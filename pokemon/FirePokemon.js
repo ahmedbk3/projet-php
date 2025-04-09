@@ -1,12 +1,10 @@
 // FirePokemon.js
-const Pokemon = require('./Pokemon').default;
+import Pokemon from './Pokemon'; // Change to ES module import
 
-class FirePokemon extends Pokemon {
+export class FirePokemon extends Pokemon { // Corrected export syntax
     constructor(name, hp, attackObj) {
         super(name, hp, attackObj);
         console.log("FirePokemon created:", this);
         this.type = 'fire';
     }
 }
-
-module.exports = FirePokemon;

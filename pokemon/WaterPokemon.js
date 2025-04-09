@@ -1,12 +1,10 @@
 // WaterPokemon.js
-const Pokemon = require('./Pokemon').default;
+import Pokemon from './Pokemon'; // Change to ES module import
 
-class WaterPokemon extends Pokemon {
+export class WaterPokemon extends Pokemon { // Change to ES module export
     constructor(name, hp, attackObj) {
         super(name, hp, attackObj);
         console.log("WaterPokemon created:", this);
         this.type = 'water';
     }
 }
-
-module.exports = WaterPokemon;

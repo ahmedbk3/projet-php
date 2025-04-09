@@ -1,4 +1,5 @@
-const express = require('express');
+// router.js
+import express from 'express'; // Change to ES module import
 const router = express.Router();
 
 router.get('/', (req, res) => {
@@ -6,7 +7,9 @@ router.get('/', (req, res) => {
     res.render('index', { user: req.session.user, views: req.session.views });
 });
 
-router.get('/login', (req, res) => res.render('login'));
+router.get('/login', (req, res) => {
+    res.render('login');
+});
 
 router.post('/login', (req, res) => {
     const { username, password } = req.body;
@@ -18,4 +21,5 @@ router.post('/login', (req, res) => {
     }
 });
 
-module.exports = router; // ✅ Don't forget this!
+export default router; // Change to ES module export
+

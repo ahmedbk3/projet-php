@@ -1,7 +1,11 @@
-const express = require('express');
-const session = require('express-session');
-const bodyParser = require('body-parser');
-const path = require('path');
+// app.js
+import express from 'express';
+import session from 'express-session';
+import bodyParser from 'body-parser';
+import path from 'path';
+import authRoutes from './routes/auth.js'; // Change to ES module import
+import studentRoutes from './routes/student.js'; // Change to ES module import
+import pokemonRoutes from './routes/pokemon.js'; // Change to ES module import
 
 const app = express();
 app.set('view engine', 'ejs');
@@ -15,11 +19,6 @@ app.use((req, res, next) => {
     else req.session.views++;
     next();
 });
-
-// Import route modules
-const authRoutes = require('./routes/auth');
-const studentRoutes = require('./routes/student');
-const pokemonRoutes = require('./routes/pokemon');
 
 // Mount routes to app
 app.use('/', authRoutes);           // Auth routes on root

@@ -1,5 +1,12 @@
-const sqlite3 = require('sqlite3').verbose();
-const db = new sqlite3.Database(':memory:');
+// database.js
+import sqlite3 from 'sqlite3'; // Change to ES module import
+const db = new sqlite3.Database(':memory:', sqlite3.OPEN_READWRITE | sqlite3.OPEN_CREATE, (err) => {
+    if (err) {
+        console.error('Error opening database:', err.message);
+    } else {
+        console.log('Connected to the in-memory SQLite database.');
+    }
+});
 
 db.serialize(() => {
     db.run("CREATE TABLE notes (name TEXT, note REAL)");
@@ -11,4 +18,4 @@ db.serialize(() => {
     stmt.finalize();
 });
 
-module.exports = db;
+export default db; // Change to ES module export
